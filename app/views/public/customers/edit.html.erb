@@ -1,0 +1,10 @@
+<%= form_with model: @customer, url:public_customer_path(@customer.id), method: :put, local:true do |f| %>
+
+<%#= f.attachment_field :image %>
+
+<%= f.label :infomation, "自己紹介" %>
+<%= f.text_field :infomation, placeholder: "ここに自己紹介内容を入力します" %>
+<%= f.submit "ユーザー情報更新", class:"btn btn-success" %>
+
+
+<% end %>

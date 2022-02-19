@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+<div class="container">
+  <% if @customer %>
+  <%= render 'info', customer: @customer %>
+  <h2>自己紹介欄</h2>
+    <%= link_to("編集",edit_public_customer_path ) %>
+  <% end %>
+
+
+  <%= link_to("映画評価一覧",public_movies_path) %>
+
+  <%= link_to("トップページへ", root_path) %>
+

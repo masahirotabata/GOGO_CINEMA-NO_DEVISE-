@@ -1,0 +1,21 @@
+
+<%= attachment_image_tag @customer, :image, size: "100x100", format: 'jpeg' %>
+  名前:<%= @customer.last_name %> <%= @customer.first_name %>
+  自己紹介:<%= @customer.infomation %>
+
+    <% if @customer %>
+      フォロー数: <%=link_to(@customer.following.count,public_customer_relationship_followings_path(relationship_id: @customer, customer_id: @customer)) %>
+      フォロワー数: <%= link_to(@customer.followers.count,public_customer_relationship_followers_path(relationship_id: @customer, customer_id: @customer))  %>
+    <% end %>
+
+<% if @movies_comment && @movies_comment.favorites.exists? %>
+  映画評価数:<%= @movies_comments.count %>
+  映画評価にいいねがついている数:<%= @movies_comment.favorites.count %>
+<% elsif @movies_comment && @movies_comment.favorites != exists? %>
+  映画評価数:<%= @movies_comments.count %>
+  映画評価にいいねがついていません。
+<% else @movies_comment == nil %>
+  映画評価を投稿していません。
+<% end %>
+
+

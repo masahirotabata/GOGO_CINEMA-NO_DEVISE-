@@ -1,0 +1,22 @@
+<%= form_with(@movie_comment, url:public_movies_comment_path, local: true) do |f| %>
+
+<div id="rating_form">
+<%=f.label :comment, "映画感想"　%>
+<%= f.text_area :comment, row:'5', placeholder: "映画のコメント", class: "form=control" %>
+<%= f.select :gender, [["男性","男性"], ["女性","女性"]], include_blank: "性別を選択してください"　%>
+<%= f.select :scene, [["一人","一人"],["デート","デート"],["同性の友達同士","同性の友達同士"],["異性の友達同士","異性の友達同士"], include_blank: "性別を選択してください"]　%>
+<label>評価:</label>
+<%= f.hidden_field :rate, :value => '0' %>
+<%= f.submit "投稿する"%>
+<script>
+  $(function()){
+    $('#rating_form').raty({
+      starOn: '<%= asset_path('star-on.png') %>',
+      staroff: '<%=asset_path('star-off.png') %>',
+      scoreName: 'movies_comment[rate]'
+    });
+  });
+</script>
+<% end %>
+
+</div>

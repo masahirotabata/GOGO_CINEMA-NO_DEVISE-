@@ -1,0 +1,17 @@
+
+  <p id="notice"><%= notice %></p>
+  <% @movies.each do |movie| %>
+        <tr>
+          <td>
+          <%= attachment_image_tag movie, :image, size: "100x100", format: 'jpeg' %>
+          </td>
+          <td>
+          <%= movie.movie_name %>
+          </td>
+          <td>
+          </td>
+          <td>
+          <%= link_to('映画詳細', public_movie_path(movie.id)) %>
+          </td>
+        </tr>
+        <% end %>

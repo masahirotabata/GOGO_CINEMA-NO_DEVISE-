@@ -1,0 +1,19 @@
+<%= form_with model: @movie, url:admin_movies_path, local: true, method: :post do |f| %>
+
+
+ <%= f.label :movie_name, "映画名" %>
+ <%= f.text_field :movie_name, placeholder: "ここに映画名を入力します" %>
+
+<%= f.label :image, "画像選択" %>
+<%= f.attachment_field :image %>
+
+<%= f.label :detail %>
+<%= f.text_field :detail, placeholder: "ここに映画の説明文を入力します" %>
+
+ <%= f.submit "映画登録", class:"btn btn-success" %>
+
+<% end %>
+
+
+
+
