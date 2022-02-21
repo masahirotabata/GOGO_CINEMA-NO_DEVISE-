@@ -7,9 +7,9 @@
   <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
     <header class="masthead mb-auto">
       <nav class="nav nav-masthead justify-content-center">
-      <class="nav-link active"><%= link_to 'ログイン',public_session_path %> </class>
+      <class="nav-link active"><%= link_to 'ログイン', new_public_session_path %> </class>
       <class="nav-link"> <%= link_to '会員登録',new_public_customer_path %></class>
-      <class="nav-link"><%= link_to "ログアウト",public_sessionout_path, method: :post %></class>
+      <class="nav-link"><%#= link_to "ログアウト",public_session_path(@customer), method: :delete %></class>
       </nav>
   </div>
 

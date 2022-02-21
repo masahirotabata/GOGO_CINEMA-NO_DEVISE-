@@ -32,38 +32,6 @@ class Public::CustomersController < ApplicationController
       render "edit"
     end
   end
-
-def create
-    customer=Customer.find_by(email: customer_params[:email])#まず、送られてきたメースアドレスでユーザーを検索する
-
-      if customer&.authenticate(customer_params[:password])#ユーザーが見つかった場合には、送られてきたパスワードによる認証をauthenticateメソッドを使って行います
-      session[:customer_id]=customer.id#認証に成功した場合に、セッションにcustomer_idを格納しています。
-
-      redirect_to root_path, notice: 'ログインしました'
-
-    else
-      render :new
-    end
-  end
-
-  def session_form
-    customer=Customer.find_by(email: customer_params[:email])#まず、送られてきたメースアドレスでユーザーを検索する
-
-      if customer&.authenticate(customer_params[:password])#ユーザーが見つかった場合には、送られてきたパスワードによる認証をauthenticateメソッドを使って行います
-      session[:customer_id]=customer.id#認証に成功した場合に、セッションにcustomer_idを格納しています。
-
-      redirect_to root_path, notice: 'ログインしました'
-
-    else
-      render :new
-    end
-  end
-
-  def sessionout
-    session[:customer_id] = nil
-    flash[:notice] ="ログアウトしました"
-    redirect_to public_session_path
-  end
   
   private
   

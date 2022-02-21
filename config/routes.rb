@@ -11,9 +11,8 @@ Rails.application.routes.draw do
 
 
  namespace :public do
-  get "session"       => "customers#session_form"
-  post "session"    => "customers#session"
-  post "sessionout"   => "customers#sessionout"
+   resources :sessions
+
     resources :customers do
       resources :notifications,only: [:index]
         resources :relationships, only: [:create, :destroy] do

@@ -67,7 +67,7 @@ class Customer < ApplicationRecord
  end
 
  def favorited_by?(customer)
-    favorites.where(customer_id: customer.id).exists?
+    favorites.find(customer_id: customer.id).exists?
 end
 
 end

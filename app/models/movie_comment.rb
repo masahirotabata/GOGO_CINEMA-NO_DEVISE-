@@ -7,7 +7,7 @@ class MovieComment < ApplicationRecord
     greater_than_or_equal_to: 1}, presence: true
 
     def favorited_by?(customer)
-    favorites.where(customer_id: customer.id).exists?
+    favorites.find(customer_id: customer.id).exists?
     end
 
 end
