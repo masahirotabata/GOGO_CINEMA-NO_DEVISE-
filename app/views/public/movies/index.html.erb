@@ -10,8 +10,8 @@
           </td>
           <td>
           </td>
-          <td>
           <%= link_to('映画詳細', public_movie_path(movie.id)) %>
+          <td><%= link_to('評価',  new_public_movie_movie_comment_path(movie.id)) %>
           </td>
         </tr>
         <% end %>

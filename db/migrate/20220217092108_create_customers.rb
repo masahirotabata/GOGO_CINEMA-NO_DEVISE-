@@ -10,6 +10,7 @@ class CreateCustomers < ActiveRecord::Migration[5.2]
       t.string :password
       t.string :image
       t.string :infomation
+      t.string :password_digest, null: false
 
        t.timestamps
     end

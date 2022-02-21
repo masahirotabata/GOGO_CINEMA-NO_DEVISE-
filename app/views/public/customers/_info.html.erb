@@ -1,5 +1,6 @@
 
-<%= attachment_image_tag @customer, :image, size: "100x100", format: 'jpeg' %>
+<%= attachment_image_tag(@customer_tag,  :image, :fill, 100, 100, fallback: "no_image.jpg") %>
+      <div class="customer_info">
   名前:<%= @customer.last_name %> <%= @customer.first_name %>
   自己紹介:<%= @customer.infomation %>
 

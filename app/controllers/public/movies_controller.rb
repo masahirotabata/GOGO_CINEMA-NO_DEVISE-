@@ -7,8 +7,11 @@ class Public::MoviesController < ApplicationController
   @movies = Movie.all
   end
   
+  
+  
 
   def create
   end
+  
 
 end

@@ -13,7 +13,7 @@ class Admin::MoviesController < ApplicationController
       render 'new'
     end
   end
-  
+
 
   def index
     @movies = Movie.all
@@ -44,11 +44,14 @@ class Admin::MoviesController < ApplicationController
     end
 
   def show
+    @movie = Movie.find_by(id: params[:id])
   end
 
 private
   def movie_params
-    params.require(:movie).permit(:movie_name, :image, :detail)
+    params.require(:movie).permit(:movie_name, :image, :genre, :detail)
   end
 
 end
+
+

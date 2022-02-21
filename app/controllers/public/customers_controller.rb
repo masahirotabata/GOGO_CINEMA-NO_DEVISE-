@@ -33,31 +33,40 @@ class Public::CustomersController < ApplicationController
     end
   end
 
-  def login
-    Customer.find(email: params[:email],
-    password: params[:password]
-    )
-    if @customer
-      session[:customer_id] = @customer.id
-      flash[:notice] = "ログインしました"
-      redirect_to public_cutomers_path(@customer)
+def create
+    customer=Customer.find_by(email: customer_params[:email])#まず、送られてきたメースアドレスでユーザーを検索する
+
+      if customer&.authenticate(customer_params[:password])#ユーザーが見つかった場合には、送られてきたパスワードによる認証をauthenticateメソッドを使って行います
+      session[:customer_id]=customer.id#認証に成功した場合に、セッションにcustomer_idを格納しています。
+
+      redirect_to root_path, notice: 'ログインしました'
+
     else
-      @error_message = "メールアドレスまたはパスワードが間違っています"
-      @email = params[:email]
-      @password = params[:password]
-      #render
+      render :new
     end
   end
 
   def session_form
+    customer=Customer.find_by(email: customer_params[:email])#まず、送られてきたメースアドレスでユーザーを検索する
+
+      if customer&.authenticate(customer_params[:password])#ユーザーが見つかった場合には、送られてきたパスワードによる認証をauthenticateメソッドを使って行います
+      session[:customer_id]=customer.id#認証に成功した場合に、セッションにcustomer_idを格納しています。
+
+      redirect_to root_path, notice: 'ログインしました'
+
+    else
+      render :new
+    end
   end
 
-  def logout
+  def sessionout
     session[:customer_id] = nil
     flash[:notice] ="ログアウトしました"
-    render public_customer_session_path
+    redirect_to public_session_path
   end
-
+  
+  private
+  
   def customer_params
     params.require(:customer).permit(:name, :email, :password, :image, :infomation)
   end

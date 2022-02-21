@@ -1,6 +1,9 @@
 class Customer < ApplicationRecord
   has_many :movies
   has_many :movie_comments
+  has_many :favorites
+
+  has_secure_password
 
   has_many :active_relationships,
   class_name: 'Relationship',
@@ -62,5 +65,9 @@ class Customer < ApplicationRecord
       notification.save if notification.valid?
    end
  end
+
+ def favorited_by?(customer)
+    favorites.where(customer_id: customer.id).exists?
+end
 
 end

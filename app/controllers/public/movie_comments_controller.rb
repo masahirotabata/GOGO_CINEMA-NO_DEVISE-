@@ -1,23 +1,31 @@
 class Public::MovieCommentsController < ApplicationController
   def new
-    @movies_comment = MovieComment.new
-    @movie_comment = Movie.find(params[:movie_id])
+    @movie= Movie.find_by(id: params[:id])
+    @movie_comment = MovieComment.new
   end
 
   def create
-    @movie = Movie.find(params[:movie_id])
-    @movies_comment = Moviescomment.new(params[:movies_comment_params])
-    @movies_comment_id = @movies_comment.id
-    @movies_comment.customer_id = current_customer.id
-      if @movies_comment.save
-        redirect_to public_customer_path(current_customer)
+    @movie = Movie.find_by(id: params[:movie_id])
+    @movie_comment = MovieComment.new(movie_comment_params)
+    @movie_comment.movie_id = @movie.id
+    @movie_comment.customer_id = current_customer
+      if @movie_comment.save!
+        redirect_to public_movies_path(@movie)
       else
         render 'new'
-
+      end
   end
 
-def movies_comment_params
-  params.require(:movies_comment).permit(:movie_id, :customer_id, :rate, :comment)
+   def index
+     @movie = Movie.find_by(id: params[:movie_id])
+     @movie_comments = MovieComment.where(movie_id: params[:@movie_id])
+     @customer = current_customer
+
+   end
+
+def movie_comment_params
+  params.require(:movie_comment).permit(:movie_id, :customer_id, :rate, :comment)
 end
+
 
 end

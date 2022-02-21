@@ -36,6 +36,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 #追加分
+gem 'bootstrap', '~> 4.5'
+gem 'jquery-rails'
+
 gem 'refile', require: 'refile/rails', github: 'manfe/refile'
 
 gem 'refile-mini_magick'
@@ -44,7 +47,7 @@ gem 'kaminari'
 
 gem 'enumerize'
 
-gem "bcrypt"
+gem 'bcrypt', '~> 3.1.7'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

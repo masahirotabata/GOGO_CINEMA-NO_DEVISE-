@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2022_02_18_052558) do
     t.string "password"
     t.string "image"
     t.string "infomation"
+    t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -58,6 +59,7 @@ ActiveRecord::Schema.define(version: 2022_02_18_052558) do
     t.integer "image_id"
     t.string "detail"
     t.string "image"
+    t.string "genre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

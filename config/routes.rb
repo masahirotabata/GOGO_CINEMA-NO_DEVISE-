@@ -1,17 +1,16 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'public/homes#top'
-
   namespace :admin do
     get 'admin/new', to: 'admin/sessions#new'
+      resources :movies
       resources :customers do
       end
-      resources :movies do
-      end
   end
-   
 
-  namespace :public do
+
+
+ namespace :public do
   get "session"       => "customers#session_form"
   post "session"    => "customers#session"
   post "sessionout"   => "customers#sessionout"
@@ -28,7 +27,8 @@ Rails.application.routes.draw do
         end
     end
     resources :movies do
-      resources :movies_comment
+      resources :movie_comments
+      resources :favorites , only: [:create , :destroy]
     end
   end
 end
