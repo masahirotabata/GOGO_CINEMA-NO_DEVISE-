@@ -1,4 +1,6 @@
 class Public::CustomersController < ApplicationController
+   
+   skip_before_action :authenticate_customer, only: [:index, :show, :new, :create, :update, :edit]
 
   def new
     @customer = Customer.new
@@ -7,6 +9,7 @@ class Public::CustomersController < ApplicationController
   def create
     @customer = Customer.new(customer_params)
       if @customer.save
+        log_in @customer
         session[:customer_id] = @customer.id
         flash[:notice] = "ユーザー登録に成功しました"
         redirect_to public_customer_path(@customer)
@@ -32,17 +35,11 @@ class Public::CustomersController < ApplicationController
       render "edit"
     end
   end
-  
+
   private
-  
+
   def customer_params
     params.require(:customer).permit(:name, :email, :password, :image, :infomation)
   end
-
-   def current_customer
-        if session[:customer_id]
-            current_customer ||= Customer.find(session[:customer_id])
-        end
-   end
 
 end

@@ -1,3 +1,6 @@
+<td>
+
+
 <% @movie_comments.each do |movie_comment| %>
   <div class="pt-2 px-2" style="background-color: #fffffe; border: 2px solid #272343; border-radius: 2px;">
   映画名:<%= movie_comment.movie.movie_name %>
@@ -11,12 +14,25 @@
       <div class="text-right">
         <p>
         投稿日：<%= movie_comment.created_at.strftime('%Y/%m/%d') %> |
-        <% if movie_comment.customer == @current_customer %>
-          <%= link_to public_movie_movies_comment_path(movie_comment.movie, movie_comment), method: :delete, class: "btn btn-sm btn-danger" do %>
+       
+          <%= link_to public_movie_movie_comment_path(movie_comment.movie, movie_comment), method: :delete, class: "btn btn-sm btn-danger" do %>
           コメント削除 <i class="fas fa-trash"></i>
-        <% end %>
-        <% end %>
+          <% end %>
+        
             </p>
+            <% if current_customer.favorites.exists? %>
+            <%= link_to public_movie_movie_comment_favorite_path(id: @movie.id, movie_comment_id: movie_comment.id), method: :DELETE  do %>
+                <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+                <%= movie_comment.favorites.count %>like
+            <% end %>
+              <% else %>
+                <%= link_to public_movie_movie_comment_favorites_path(movie_comment_id: movie_comment.id) , method: :POST do %>
+                <i class="fa fa-heart-o" aria-hidden="true"></i>
+                <%= current_customer.favorites.count %>like
+                <% end %>
+            <% end %>
+            
+
         </div>
     </div>
 
@@ -30,9 +46,6 @@
           score: <%= movie_comment.rate %>
         });
       });
-    </script
+    </script>
 
-
-
-
-   <% end %>
+       <% end %>

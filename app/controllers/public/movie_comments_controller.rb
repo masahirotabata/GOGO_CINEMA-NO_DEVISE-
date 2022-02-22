@@ -17,9 +17,18 @@ class Public::MovieCommentsController < ApplicationController
   end
 
    def index
-     @movie = Movie.find_by(id: params[:movie_id])
-     @movie_comments = MovieComment.where(customer_id: params[:customer_id])
+
      @customer = current_customer
+     @movie = Movie.find_by(id: params[:movie_id])
+     @movie_comments = MovieComment.where(movie_id: @movie.id)
+
+   end
+
+   def destroy
+
+     @movie_comment = MovieComment.find_by(id: params[:id])
+     @movie_comment.destroy
+     redirect_to public_movies_path(@movie)
 
    end
 

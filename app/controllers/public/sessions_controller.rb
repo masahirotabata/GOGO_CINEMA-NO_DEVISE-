@@ -1,14 +1,15 @@
 class Public::SessionsController < ApplicationController
+ skip_before_action :authenticate_customer, only: [:new, :create]
 
    def new
-  end
+   end
 
   def create
-    customer = Customer.find_by(email: params[:email])
-    if customer && customer.authenticate(params[:password])
+    customer = Customer.find_by(email: params[:session][:email].downcase)
+    if customer && customer.authenticate(params[:session][:password])
+      log_in customer
+      redirect_to public_customer_path(customer)
       # ユーザーログイン後にユーザー情報のページにリダイレクトする
-     log_in customer
-      redirect_to  public_customer_path(current_customer)
     else
       # エラーメッセージを作成する
       flash[:danger] = 'Invalid email/password combination' # 本当は正しくない

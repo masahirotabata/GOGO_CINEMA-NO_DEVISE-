@@ -1,9 +1,9 @@
-<% provide(:title, "log in") %>
-<h1>session</h1>
+<% provide(:title, "Log in") %>
+<h1>Log in</h1>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_with model: @customer, url: public_sessions_path, method: :post, local: true  do |f| %>
+    <%= form_for(:session, url: public_sessions_path) do |f| %>
 
       <%= f.label :email %>
       <%= f.email_field :email, class: 'form-control' %>
@@ -11,9 +11,9 @@
       <%= f.label :password %>
       <%= f.password_field :password, class: 'form-control' %>
 
-      <%= f.submit "session", class: "btn btn-primary" %>
+      <%= f.submit "Log in", class: "btn btn-primary" %>
     <% end %>
 
-    <p>New Customer? <%= link_to "Sign up now!", new_public_customer_path %></p>
+    <p>New user? <%= link_to "Sign up now!", new_public_customer_path %></p>
   </div>
 </div>

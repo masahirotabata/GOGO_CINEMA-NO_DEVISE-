@@ -26,8 +26,9 @@ Rails.application.routes.draw do
         end
     end
     resources :movies do
-      resources :movie_comments
+      resources :movie_comments do
       resources :favorites , only: [:create , :destroy]
+      end
     end
   end
 end

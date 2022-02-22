@@ -1,15 +1,33 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>GOGOCinema</title>
+    <title>GOGO_CINEMA</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <% if controller.class.parent.name == "Admin" %>
+      <%= render "admin/shared/header" %>
+    <% else %>
+      <%= render "public/shared/header" %>
+    <% end %>
+
+    <%# if @current_customer.authenticate? && unchecked_notifications.any?  %>
+      <i class="fa fa-circle" style="color: gold;"></i>
+    <%# end %>
+
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
     <%= yield %>
   </body>
+
+    <footer class="mt-4">
+     <%#= render "shared/footer" %>
+    </footer>
+
 </html>

@@ -1,28 +1,49 @@
 
-  <%= link_to root_path, class: "navbar-brand" do %>
+
+      <%# if customer_log_in? %>
+      <% if logged_in? %>
+          <li><%= link_to "Users", '#' %></li>
+
+          ようこそ、<%= current_customer.last_name %> <%= current_customer.first_name %>さん！
+
+　　　　 <%= link_to root_path, class: "navbar-brand" do %>
     <%#= image_tag asset_path('header_logo_2.jpg'), { height:50 } %>
   <% end %>
 
 
-      <% if customer_signed_in? %>
+          <li><%= link_to "Users", '#' %></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Account <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Profile", public_customer_path(current_customer) %></li>
+              <li><%= link_to "Settings", '#' %></li>
+              <li class="divider"></li>
+              <li>
+                <%#= link_to "Log out", logout_path, method: "delete" %>
+              </li>
+            </ul>
+          </li>
+        <% else %>
 
-          ようこそ、<%= current_customer.last_name %> <%= current_customer.first_name %>さん！
-
-        <%= link_to "マイページ", public_customer_path(current_customer), class: "nav-link" %>
-
-        <%= link_to "賃貸物件一覧", public_movies_path, class: "nav-link" %>
-
-        <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "nav-link" %>
+            <%# link_to "マイページ", public_customer_path(id: @current_customer.id), class: "nav-link" %>
 
 
-        <%= render 'public/searches/form' %>
 
-      <% else %>
+        <%#= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "nav-link" %>
 
-          <%= link_to "商品一覧", public_movies_path, class: "nav-link" %>
 
-          <%= link_to "新規登録", new_customer_registration_path, class: "nav-link" %>
+        <%#= render 'public/searches/form' %>
 
-          <%= link_to "ログイン", new_customer_session_path, class: "nav-link" %>
+      <%# else %>
 
-      <% end %>
+          <%= link_to "映画一覧", public_movies_path, class: "nav-link" %>
+
+          <%= link_to "新規登録", new_public_customer_path, class: "nav-link" %>
+
+          <%= link_to "ログイン", new_public_session_path, class: "nav-link" %>
+
+      <%# end %>
+          <li><%#=# link_to "Log in", login_path %></li>
+        <% end %>
