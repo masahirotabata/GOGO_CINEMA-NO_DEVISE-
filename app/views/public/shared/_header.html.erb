@@ -1,14 +1,14 @@
 
 
       <%# if customer_log_in? %>
-      <% if logged_in? %>
+      <% if current_customer && logged_in? %>
           <li><%= link_to "Users", '#' %></li>
 
           ようこそ、<%= current_customer.last_name %> <%= current_customer.first_name %>さん！
 
 　　　　 <%= link_to root_path, class: "navbar-brand" do %>
     <%#= image_tag asset_path('header_logo_2.jpg'), { height:50 } %>
-  <% end %>
+    <% end %>
 
 
           <li><%= link_to "Users", '#' %></li>

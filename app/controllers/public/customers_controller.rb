@@ -1,5 +1,5 @@
 class Public::CustomersController < ApplicationController
-   
+
    skip_before_action :authenticate_customer, only: [:index, :show, :new, :create, :update, :edit]
 
   def new
@@ -39,7 +39,7 @@ class Public::CustomersController < ApplicationController
   private
 
   def customer_params
-    params.require(:customer).permit(:name, :email, :password, :image, :infomation)
+    params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name, :email, :password, :image, :infomation)
   end
 
 end

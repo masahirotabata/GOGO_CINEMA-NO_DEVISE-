@@ -6,11 +6,11 @@ class ApplicationController < ActionController::Base
  def current_customer
     @current_customer ||= Customer.find_by(id: session[:customer_id]) if session[:customer_id]
 
- # def require_session
- #    if session[:customer_email].nil?
- #      redirect_to login_path
- #    end
- # end
+ def require_session
+    if session[:customer_email].nil?
+      redirect_to login_path
+    end
+ end
 
   end
 
@@ -18,13 +18,7 @@ class ApplicationController < ActionController::Base
 
     def authenticate_customer
 
-      redirect_to log_in unless logged_in?
-
-    end
-
-    def log_in(customer)
-
-      session[:customer_id] = customer.id
+      redirect_to new_public_session_path unless logged_in?
 
     end
 

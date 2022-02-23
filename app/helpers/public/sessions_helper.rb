@@ -1,6 +1,6 @@
 module Public::SessionsHelper
 
-  # 渡されたユーザーでログインする
+  #渡されたユーザーでログインする
   def log_in(customer)
     session[:customer_id] = customer.id
   end

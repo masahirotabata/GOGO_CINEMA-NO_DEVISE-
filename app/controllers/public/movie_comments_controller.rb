@@ -8,7 +8,7 @@ class Public::MovieCommentsController < ApplicationController
     @movie = Movie.find_by(id: params[:movie_id])
     @movie_comment = MovieComment.new(movie_comment_params)
     @movie_comment.movie_id = @movie.id
-    @movie_comment.customer_id = current_customer.id
+    @movie_comment.customer_id = session[:customer_id]
       if @movie_comment.save!
         redirect_to public_movies_path(@movie)
       else

@@ -7,20 +7,15 @@
   <%# rateを表示 %>
     <div id="review-rating_<%= movie_comment.id %>" data-score="<%= movie_comment.rate %>">評価：</div>
     <div class="text-left">
-      <p>投稿者：<%= movie_comment.customer %></p>
+      <p>投稿者：<%= movie_comment.customer.last_name %> さん</p>
       <p><%= movie_comment.comment %></p>
       </P>
     </div>
+      <p id="notice"><%= notice %></p>
       <div class="text-right">
         <p>
         投稿日：<%= movie_comment.created_at.strftime('%Y/%m/%d') %> |
-       
-          <%= link_to public_movie_movie_comment_path(movie_comment.movie, movie_comment), method: :delete, class: "btn btn-sm btn-danger" do %>
-          コメント削除 <i class="fas fa-trash"></i>
-          <% end %>
-        
-            </p>
-            <% if current_customer.favorites.exists? %>
+         <% if movie_comment.favorited_by?(session[:current_customer]) %>
             <%= link_to public_movie_movie_comment_favorite_path(id: @movie.id, movie_comment_id: movie_comment.id), method: :DELETE  do %>
                 <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
                 <%= movie_comment.favorites.count %>like
@@ -28,10 +23,16 @@
               <% else %>
                 <%= link_to public_movie_movie_comment_favorites_path(movie_comment_id: movie_comment.id) , method: :POST do %>
                 <i class="fa fa-heart-o" aria-hidden="true"></i>
-                <%= current_customer.favorites.count %>like
+                <%= movie_comment.favorites.count %>like
                 <% end %>
+
+          <%= link_to public_movie_movie_comment_path(movie_comment.movie, movie_comment), method: :delete, class: "btn btn-sm btn-danger" do %>
+          コメント削除 <i class="fas fa-trash"></i>
+          <% end %>
+
+            </p>
             <% end %>
-            
+
 
         </div>
     </div>
