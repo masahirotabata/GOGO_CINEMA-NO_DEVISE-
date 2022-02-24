@@ -1,7 +1,6 @@
-
+<div class="customer_info">
 <%= attachment_image_tag(@customer_tag,  :image, :fill, 100, 100, fallback: "no_image.jpg") %>
-      <div class="customer_info">
-  名前:<%= current_customer.last_name %> <%= current_customer.first_name %>
+  名前:<%= @customer.last_name %> <%= @customer.first_name %>
   自己紹介:<%= @customer.infomation %>
 
     <% if @customer %>
@@ -18,5 +17,5 @@
 <% else @movies_comment == nil %>
   映画評価を投稿していません。
 <% end %>
-
+</div>
 

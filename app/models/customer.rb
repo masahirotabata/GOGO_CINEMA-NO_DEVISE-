@@ -54,18 +54,6 @@ class Customer < ApplicationRecord
     @matchers = following & followers
   end
 
-  #フォロー時の通知
- def create_notification_follow!(current_customer)
-   temp = Notification.where(["visiter_id = ? and visited_id = ? and action = ? ",current_customer.id, id, 'follow'])
-   if temp.blank?
-     notification = current_customer.active_notifications.new(
-     visited_id: id,
-     action: 'follow'
-      )
-      notification.save if notification.valid?
-   end
- end
-
  def favorited_by?(customer)
     favorites.find(customer_id: customer.id).exists?
 end

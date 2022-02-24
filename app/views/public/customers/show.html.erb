@@ -6,8 +6,17 @@
     <%= link_to("編集",edit_public_customer_path ) %>
   <% end %>
 
+  <% if current_customer != @customer %>
+        <% if @customer.following?(current_customer)%>
+        <%= link_to "フォロー外す", public_customer_relationship_path(current_customer), method: :delete %>
+        <% else %>
+        <%= link_to "フォローする", public_customer_relationships_path(current_customer), method: :post %>
+        <% end %>
+      <% end %>
+
 
   <%= link_to("映画評価一覧",public_movies_path) %>
 
   <%= link_to("トップページへ", root_path) %>
+  </div>
 

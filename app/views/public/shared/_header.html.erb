@@ -1,15 +1,5 @@
 
 
-      <%# if customer_log_in? %>
-      <% if current_customer && logged_in? %>
-          <li><%= link_to "Users", '#' %></li>
-
-          ようこそ、<%= current_customer.last_name %> <%= current_customer.first_name %>さん！
-
-　　　　 <%= link_to root_path, class: "navbar-brand" do %>
-    <%#= image_tag asset_path('header_logo_2.jpg'), { height:50 } %>
-    <% end %>
-
 
           <li><%= link_to "Users", '#' %></li>
           <li class="dropdown">
@@ -25,7 +15,7 @@
               </li>
             </ul>
           </li>
-        <% else %>
+
 
             <%# link_to "マイページ", public_customer_path(id: @current_customer.id), class: "nav-link" %>
 
@@ -46,4 +36,3 @@
 
       <%# end %>
           <li><%#=# link_to "Log in", login_path %></li>
-        <% end %>

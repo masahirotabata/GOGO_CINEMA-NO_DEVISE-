@@ -18,7 +18,7 @@ class Public::MovieCommentsController < ApplicationController
 
    def index
 
-     @customer = current_customer
+     @customer = Customer.find_by(id: params[:id])
      @movie = Movie.find_by(id: params[:movie_id])
      @movie_comments = MovieComment.where(movie_id: @movie.id)
 
@@ -31,6 +31,22 @@ class Public::MovieCommentsController < ApplicationController
      redirect_to public_movies_path(@movie)
 
    end
+
+    def avg_score
+    unless self.comments.empty?
+      comments.average(:rate_id).round(1)
+    else
+      0.0
+    end
+  end
+
+ def avg_score_percentage
+   unless self.comments.empty?
+     comments.average(:rate_id).round(1).to_f*100/5
+   else
+     0.0
+   end
+ end
 
 def movie_comment_params
   params.require(:movie_comment).permit(:movie_id, :customer_id, :rate, :comment)

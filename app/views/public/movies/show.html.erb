@@ -5,12 +5,38 @@
 <%= @movie.detail %>
 <%= link_to('映画のコメント一覧', public_movie_movie_comments_path(@movie)) %>
 
-
+<div class="nav1">
 映画の評価(全体)
+ <div class="pb-2"></div>
+    <script>
+      $(function(){
+        $('#review-rating_<%= @movie.movie_comments.ids %>').raty({
+          starOn: '<%= asset_path('star-on.png') %>',
+          starOff: '<%= asset_path('star-off.png') %>',
+          readOnly: true,
+          score: movie_comments.reviews.average(:rate).to_f.round(1)}","#{@movie.
+
+        });
+      });
+    </script>
+
+</div>
+<div class="nav2">
 映画の評価(男性)
+</div>
+<div class="nav3">
 映画の評価(女性)
+</div>
+<div class="nav4">
 映画の評価(デート)
+</div>
+<div class="nav5">
 映画の評価(一人で)
+</div>
+<div class="nav6">
 映画の評価(同性同士で)
+</div>
+<div class="nav7">
 映画の評価(異性同士で)
+</div>
 

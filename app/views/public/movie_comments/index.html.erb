@@ -7,7 +7,7 @@
   <%# rateを表示 %>
     <div id="review-rating_<%= movie_comment.id %>" data-score="<%= movie_comment.rate %>">評価：</div>
     <div class="text-left">
-      <p>投稿者：<%= movie_comment.customer.last_name %> さん</p>
+      <p>投稿者：<%= link_to movie_comment.customer.last_name,  public_customer_path(movie_comment.customer) %>　<%= link_to movie_comment.customer.first_name,  public_customer_path(movie_comment.customer) %> さん</p>
       <p><%= movie_comment.comment %></p>
       </P>
     </div>
@@ -36,17 +36,5 @@
 
         </div>
     </div>
-
-  <div class="pb-2"></div>
-    <script>
-      $(function(){
-        $('#review-rating_<%= movie_comment.id %>').raty({
-          starOn: '<%= asset_path('star-on.png') %>',
-          starOff: '<%= asset_path('star-off.png') %>',
-          readOnly: true,
-          score: <%= movie_comment.rate %>
-        });
-      });
-    </script>
 
        <% end %>
