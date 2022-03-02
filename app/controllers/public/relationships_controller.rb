@@ -11,7 +11,8 @@ class Public::RelationshipsController < ApplicationController
     @matchers = followings & followers
     @cart_real_estate = CartRealEstate.new
   end
-
+  
+  
   def create
     @customer = Customer.find(params[:customer_id])
     session[:current_customer] = @customer
