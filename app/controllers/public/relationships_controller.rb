@@ -6,7 +6,7 @@ class Public::RelationshipsController < ApplicationController
   def followers
     @followers = Customer.find(params[:customer_id]).followers
   end
-
+   
   def matchers
     @matchers = followings & followers
     @cart_real_estate = CartRealEstate.new
