@@ -2,7 +2,7 @@ class Public::RelationshipsController < ApplicationController
   def followings
     @followings = Customer.find(params[:customer_id]).following
   end
-　 #更新
+　
   def followers
     @followers = Customer.find(params[:customer_id]).followers
   end
@@ -11,7 +11,6 @@ class Public::RelationshipsController < ApplicationController
     @matchers = followings & followers
     @cart_real_estate = CartRealEstate.new
   end
-
 
   def create
     @customer = Customer.find(params[:customer_id])
@@ -24,7 +23,7 @@ class Public::RelationshipsController < ApplicationController
     flash.now[:alert] = 'ユーザーのフォローに失敗しました'
     redirect_to public_customer_path(@customer)
   end
-     #通知の作成
+ 
      @current_customer.create_notification_follow!(current_customer)
 
   end

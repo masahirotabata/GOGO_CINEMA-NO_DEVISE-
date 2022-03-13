@@ -3,7 +3,7 @@ class Public::MovieCommentsController < ApplicationController
     @movie= Movie.find_by(id: params[:id])
     @movie_comment = MovieComment.new
   end
-  #
+  
   def create
     @movie = Movie.find_by(id: params[:movie_id])
     @movie_comment = MovieComment.new(movie_comment_params)
