@@ -1,6 +1,6 @@
 class Public::CustomersController < ApplicationController
   skip_before_action :authenticate_customer, only:[:index, :show, :new, :create, :update, :edit]
-
+  
   def new
     @customer = Customer.new(customer_params)
       if @customer.save
