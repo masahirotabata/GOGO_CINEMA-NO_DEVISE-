@@ -15,7 +15,7 @@ class Public::MovieCommentsController < ApplicationController
         render 'new'
       end
   end
-   #
+   #更新
    def index
 
      @customer = Customer.find_by(id: params[:id])
