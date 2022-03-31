@@ -1,5 +1,5 @@
 class Public::FavoritesController < ApplicationController
-  #更新
+  
   def create
     @movie_comment = MovieComment.find(params[:movie_comment_id])
     favorite = @movie_comment.favorites.new(customer_id: current_customer)
