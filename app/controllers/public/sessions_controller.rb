@@ -4,7 +4,7 @@ class Public::SessionsController < ApplicationController
    def new
    end
   
-  #更新
+  
   def create
     customer = Customer.find_by(email: params[:session][:email].downcase)
     if customer && customer.authenticate(params[:session][:password])
