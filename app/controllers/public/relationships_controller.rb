@@ -3,6 +3,7 @@ class Public::RelationshipsController < ApplicationController
     @followings = Customer.find(params[:customer_id]).following
   end
 　
+　#更新
   def followers
     @followers = Customer.find(params[:customer_id]).followers
   end
